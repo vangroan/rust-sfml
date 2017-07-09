@@ -20,7 +20,7 @@ pub use self::render_texture::RenderTexture;
 pub use self::render_window::{Events, RenderWindow};
 pub use self::shader::Shader;
 pub use self::shape::Shape;
-pub use self::sprite::Sprite;
+pub use self::sprite::{Sprite, RcSprite};
 pub use self::text::Text;
 pub use self::text_style::TextStyle;
 pub use self::texture::{Texture, TextureRef};
