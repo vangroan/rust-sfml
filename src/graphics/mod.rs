@@ -31,6 +31,9 @@ pub use self::{
     vertex_buffer::{VertexBuffer, VertexBufferUsage},
     view::View,
 };
+pub use self::{
+    sprite::RcSprite,
+};
 
 pub mod blend_mode;
 mod circle_shape;

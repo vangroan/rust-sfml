@@ -246,3 +246,52 @@ impl<'s> Drop for Sprite<'s> {
         unsafe { ffi::sfSprite_destroy(self.sprite) }
     }
 }
+
+use std::rc::Rc;
+use std::ops::{Deref, DerefMut};
+use graphics::Texture;
+
+/// Variant of `Sprite` that takes `Rc<Texture>`.
+#[derive(Debug)]
+pub struct RcSprite {
+    _texture: Option<Rc<Texture>>,
+    sprite: Sprite<'static>,
+}
+
+impl Deref for RcSprite {
+    type Target = Sprite<'static>;
+
+    fn deref(&self) -> &Self::Target {
+        &self.sprite
+    }
+}
+
+impl DerefMut for RcSprite {
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.sprite
+    }
+}
+
+impl RcSprite {
+    /// Create a new sprite
+    ///
+    /// Return Some(Sprite) or None
+    pub fn new() -> Self {
+        Self {
+            sprite: Sprite::new(),
+            _texture: None,
+        }
+    }
+
+    /// Create a new sprite with a texture
+    ///
+    /// Return Some(Sprite) or None
+    pub fn with_texture(texture: Rc<Texture>) -> Self {
+        let sprite = Sprite::new();
+        unsafe { ffi::sfSprite_setTexture(sprite.sprite, texture.raw(), sfBool::from_bool(true))}
+        Self {
+            _texture: Some(texture),
+            sprite: sprite,
+        }
+    }
+}
