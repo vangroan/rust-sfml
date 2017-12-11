@@ -7,47 +7,56 @@ use std::borrow::{Borrow, ToOwned};
 use std::ffi::{CStr, CString};
 use std::io::{Read, Seek};
 use std::ops::{Deref, DerefMut};
+use std::fmt::{self, Debug};
 
-/// Type for loading and manipulating character fonts.
-///
-/// Fonts can be loaded from a file, from memory or from a custom stream,
-/// and supports the most common types of fonts.
-///
-/// See the `from_file` function for the complete list of supported formats.
-///
-/// Once it is loaded, a `Font` instance provides three types of information about the font:
-///
-/// - Global metrics, such as the line spacing
-/// - Per-glyph metrics, such as bounding box or kerning
-/// - Pixel representation of glyphs
-///
-/// Fonts alone are not very useful: they hold the font data but cannot make anything useful of it.
-/// To do so you need to use the `Text` type, which is able to properly output text with
-/// several options such as character size, style, color, position, rotation, etc.
-/// This separation allows more flexibility and better performances:
-/// indeed a `Font` is a heavy resource, and any operation on it is
-/// slow (often too slow for real-time applications).
-/// On the other side, a `Text` is a lightweight object which can combine the
-/// glyphs data and metrics of a `Font` to display any text on a render target.
-/// Note that it is also possible to bind several `Text` instances to the same `Font`.
-///
-/// It is important to note that the `Text` instance doesn't copy the font that it uses,
-/// it only keeps a reference to it.
-/// Thus, a `Font` must not be destructed while it is used by a
-/// `Text` (i.e. never write a function that uses a local `Font` instance for creating a text).
-///
-/// Apart from loading font files, and passing them to instances of `Text`,
-/// you should normally not have to deal directly with this type.
-/// However, it may be useful to access the font metrics or rasterized glyphs for advanced usage.
-///
-/// Note that if the font is a bitmap font, it is not scalable,
-/// thus not all requested sizes will be available to use.
-/// This needs to be taken into consideration when using `Text`.
-/// If you need to display text of a certain size, make sure the corresponding bitmap font that
-/// supports that size is used.
-#[derive(Debug)]
-#[allow(missing_copy_implementations)]
-pub enum Font {}
+extern "C" {
+    /// Type for loading and manipulating character fonts.
+    ///
+    /// Fonts can be loaded from a file, from memory or from a custom stream,
+    /// and supports the most common types of fonts.
+    ///
+    /// See the `from_file` function for the complete list of supported formats.
+    ///
+    /// Once it is loaded, a `Font` instance provides three types of information about the font:
+    ///
+    /// - Global metrics, such as the line spacing
+    /// - Per-glyph metrics, such as bounding box or kerning
+    /// - Pixel representation of glyphs
+    ///
+    /// Fonts alone are not very useful:
+    /// they hold the font data but cannot make anything useful of it.
+    /// To do so you need to use the `Text` type, which is able to properly output text with
+    /// several options such as character size, style, color, position, rotation, etc.
+    /// This separation allows more flexibility and better performances:
+    /// indeed a `Font` is a heavy resource, and any operation on it is
+    /// slow (often too slow for real-time applications).
+    /// On the other side, a `Text` is a lightweight object which can combine the
+    /// glyphs data and metrics of a `Font` to display any text on a render target.
+    /// Note that it is also possible to bind several `Text` instances to the same `Font`.
+    ///
+    /// It is important to note that the `Text` instance doesn't copy the font that it uses,
+    /// it only keeps a reference to it.
+    /// Thus, a `Font` must not be destructed while it is used by a
+    /// `Text` (i.e. never write a function that uses a local `Font` instance for creating a text).
+    ///
+    /// Apart from loading font files, and passing them to instances of `Text`,
+    /// you should normally not have to deal directly with this type.
+    /// However, it may be useful to access the font metrics or rasterized glyphs for
+    /// advanced usage.
+    ///
+    /// Note that if the font is a bitmap font, it is not scalable,
+    /// thus not all requested sizes will be available to use.
+    /// This needs to be taken into consideration when using `Text`.
+    /// If you need to display text of a certain size, make sure the corresponding bitmap font that
+    /// supports that size is used.
+    pub type Font;
+}
+
+impl Debug for Font {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "Font at {:p}", self)
+    }
+}
 
 impl Font {
     /// Get the kerning value corresponding to a given pair of characters in a font

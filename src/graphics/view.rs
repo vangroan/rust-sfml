@@ -3,15 +3,22 @@ use graphics::csfml_graphics_sys as ffi;
 use std::borrow::{Borrow, ToOwned};
 use std::ops::{Deref, DerefMut};
 use system::Vector2f;
+use std::fmt::{self, Debug};
 
-/// 2D camera that defines what region is shown on screen
-///
-/// This is a very powerful concept: you can scroll,
-/// rotate or zoom the entire scene without altering
-/// the way that your drawable objects are drawn.
-#[derive(Debug)]
-#[allow(missing_copy_implementations)]
-pub enum View {}
+extern "C" {
+    /// 2D camera that defines what region is shown on screen
+    ///
+    /// This is a very powerful concept: you can scroll,
+    /// rotate or zoom the entire scene without altering
+    /// the way that your drawable objects are drawn.
+    pub type View;
+}
+
+impl Debug for View {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "View at {:p}", self)
+    }
+}
 
 impl View {
     /// Get the current orientation of a view
