@@ -80,7 +80,7 @@ impl<'s> Default for CircleShape<'s> {
 }
 
 impl<'s> Drawable for CircleShape<'s> {
-    fn draw<'a: 'shader, 'texture, 'shader, 'shader_texture>(
+    fn draw<'a: 'shader + 'texture, 'texture, 'shader, 'shader_texture>(
         &'a self,
         target: &mut RenderTarget,
         states: RenderStates<'texture, 'shader, 'shader_texture>,

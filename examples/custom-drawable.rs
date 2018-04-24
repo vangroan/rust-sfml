@@ -25,7 +25,7 @@ impl<'s> Bullet<'s> {
 
 // Implement the Drawable trait for our custom drawable.
 impl<'s> Drawable for Bullet<'s> {
-    fn draw<'a: 'shader, 'texture, 'shader, 'shader_texture>(
+    fn draw<'a: 'shader + 'texture, 'texture, 'shader, 'shader_texture>(
         &'a self,
         render_target: &mut RenderTarget,
         _: RenderStates<'texture, 'shader, 'shader_texture>,

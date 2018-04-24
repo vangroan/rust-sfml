@@ -28,7 +28,7 @@ impl<'t> Pixelate<'t> {
 }
 
 impl<'t> Drawable for Pixelate<'t> {
-    fn draw<'a: 'shader, 'texture, 'shader, 'shader_texture>(
+    fn draw<'a: 'shader + 'texture, 'texture, 'shader, 'shader_texture>(
         &'a self,
         target: &mut RenderTarget,
         mut states: RenderStates<'texture, 'shader, 'shader_texture>,
@@ -92,7 +92,7 @@ impl<'fo> WaveBlur<'fo> {
 }
 
 impl<'fo> Drawable for WaveBlur<'fo> {
-    fn draw<'a: 'shader, 'texture, 'shader, 'shader_texture>(
+    fn draw<'a: 'shader + 'texture, 'texture, 'shader, 'shader_texture>(
         &'a self,
         target: &mut RenderTarget,
         mut states: RenderStates<'texture, 'shader, 'shader_texture>,
@@ -150,7 +150,7 @@ impl StormBlink {
 }
 
 impl Drawable for StormBlink {
-    fn draw<'a: 'shader, 'texture, 'shader, 'shader_texture>(
+    fn draw<'a: 'shader + 'texture, 'texture, 'shader, 'shader_texture>(
         &'a self,
         target: &mut RenderTarget,
         mut states: RenderStates<'texture, 'shader, 'shader_texture>,
@@ -213,7 +213,7 @@ impl<'t> Edge<'t> {
 }
 
 impl<'t> Drawable for Edge<'t> {
-    fn draw<'a: 'shader, 'texture, 'shader, 'shader_texture>(
+    fn draw<'a: 'shader + 'texture, 'texture, 'shader, 'shader_texture>(
         &'a self,
         target: &mut RenderTarget,
         mut states: RenderStates<'texture, 'shader, 'shader_texture>,

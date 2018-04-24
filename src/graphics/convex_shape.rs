@@ -92,7 +92,7 @@ impl<'s> ConvexShape<'s> {
 }
 
 impl<'s> Drawable for ConvexShape<'s> {
-    fn draw<'a: 'shader, 'texture, 'shader, 'shader_texture>(
+    fn draw<'a: 'shader + 'texture, 'texture, 'shader, 'shader_texture>(
         &'a self,
         target: &mut RenderTarget,
         states: RenderStates<'texture, 'shader, 'shader_texture>,

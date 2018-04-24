@@ -176,7 +176,7 @@ impl<'s> Clone for Sprite<'s> {
 }
 
 impl<'s> Drawable for Sprite<'s> {
-    fn draw<'a: 'shader, 'texture, 'shader, 'shader_texture>(
+    fn draw<'a: 'shader + 'texture, 'texture, 'shader, 'shader_texture>(
         &'a self,
         target: &mut RenderTarget,
         states: RenderStates<'texture, 'shader, 'shader_texture>,
