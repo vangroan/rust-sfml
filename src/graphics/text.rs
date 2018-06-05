@@ -303,3 +303,42 @@ impl<'s> Drop for Text<'s> {
         }
     }
 }
+
+use std::rc::Rc;
+use std::ops::{Deref, DerefMut};
+
+/// Variant of `Text` that takes `Rc<Font>`.
+#[derive(Debug)]
+pub struct RcText {
+    _font: Option<Rc<Font>>,
+    text: Text<'static>,
+}
+
+impl Deref for RcText {
+    type Target = Text<'static>;
+
+    fn deref(&self) -> &Self::Target {
+        &self.text
+    }
+}
+
+impl DerefMut for RcText {
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.text
+    }
+}
+
+impl RcText {
+    /// Create a new text
+    pub fn new(string: &str, font: Rc<Font>, character_size: u32) -> Self {
+        let mut text = Text::default();
+        text.set_string(string);
+        text.set_character_size(character_size);
+        unsafe { ffi::sfText_setFont(text.text, font.raw()) }
+
+        Self {
+            text: text,
+            _font: Some(font),
+        }
+    }
+}
