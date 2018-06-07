@@ -33,6 +33,7 @@ pub use self::{
 };
 pub use self::{
     sprite::RcSprite,
+    text::RcText,
 };
 
 pub mod blend_mode;
