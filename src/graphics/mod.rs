@@ -34,6 +34,7 @@ pub use self::{
 pub use self::{
     sprite::RcSprite,
     text::RcText,
+    rectangle_shape::RcRectangleShape,
 };
 
 pub mod blend_mode;

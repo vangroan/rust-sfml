@@ -219,3 +219,59 @@ impl<'s> Drop for RectangleShape<'s> {
         unsafe { ffi::sfRectangleShape_destroy(self.rectangle_shape) }
     }
 }
+
+
+use std::rc::Rc;
+use std::ops::{Deref, DerefMut};
+use graphics::Texture;
+
+/// Variant of `Sprite` that takes `Rc<Texture>`.
+#[derive(Debug)]
+pub struct RcRectangleShape {
+    _texture: Option<Rc<Texture>>,
+    rect: RectangleShape<'static>,
+}
+
+impl Deref for RcRectangleShape {
+    type Target = RectangleShape<'static>;
+
+    fn deref(&self) -> &Self::Target {
+        &self.rect
+    }
+}
+
+impl DerefMut for RcRectangleShape {
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.rect
+    }
+}
+
+impl RcRectangleShape {
+    /// Create a new sprite
+    ///
+    /// Return Some(Sprite) or None
+    pub fn new() -> Self {
+        Self {
+            rect: RectangleShape::new(),
+            _texture: None,
+        }
+    }
+
+    /// Create a new sprite with a texture
+    ///
+    /// Return Some(Sprite) or None
+    pub fn with_texture(texture: Rc<Texture>) -> Self {
+        let rect = RectangleShape::new();
+        unsafe { ffi::sfRectangleShape_setTexture(rect.rectangle_shape, texture.raw(), sfBool::from_bool(true))}
+        Self {
+            _texture: Some(texture),
+            rect: rect,
+        }
+    }
+
+    pub fn with_size(size: Vector2f) -> Self {
+        let mut rect = RcRectangleShape::new();
+        rect.set_size(size);
+        rect
+    }
+}
