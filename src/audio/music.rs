@@ -45,6 +45,9 @@ use std::mem;
 /// ```
 ///
 /// [`play`]: Music::play
+/// [`SoundBuffer`]: crate::audio::SoundBuffer
+/// [`Sound`]: crate::audio::Sound
+
 ///
 #[derive(Debug)]
 pub struct Music {
