@@ -31,10 +31,6 @@ use csfml_window_sys as ffi;
 ///     }
 /// }
 /// ```
-///
-/// [`Window::poll_event`]: crate::window::Window::poll_event
-/// [`Window::wait_event`]: crate::window::Window::wait_event
-///
 #[derive(Clone, PartialEq, Debug, Copy)]
 pub enum Event {
     /// The window requested to be closed

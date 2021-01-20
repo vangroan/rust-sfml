@@ -47,8 +47,6 @@ use std::io::{Read, Seek};
 /// This needs to be taken into consideration when using [`Text`].
 /// If you need to display text of a certain size, make sure the corresponding bitmap font that
 /// supports that size is used.
-///
-/// [`Text`]: crate::graphics::Text
 #[derive(Debug)]
 #[allow(missing_copy_implementations)]
 pub enum Font {}

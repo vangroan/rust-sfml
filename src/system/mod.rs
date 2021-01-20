@@ -14,7 +14,8 @@ use csfml_system_sys::{sfBool, sfFalse, sfTrue};
 
 /// Boolean type used by CSFML.
 ///
-/// This is required in some places instead of `bool` for FFI reasons.
+/// Used in cases where we need directly pass a boolean value to CSFML, like in the case
+/// of [`::window::ContextSettings`].
 ///
 /// # Example
 /// ```ignore
