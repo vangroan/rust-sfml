@@ -116,24 +116,19 @@ impl<'texture, 'shader, 'shader_texture> RenderStates<'texture, 'shader, 'shader
     }
 }
 
-impl RenderStates<'static, 'static, 'static> {
-    /// The default render state.
-    ///
-    /// This can be used in a const context, unlike the [`Default`] implementation.
-    pub const DEFAULT: Self = Self {
-        repr: ffi::sfRenderStates {
-            blendMode: BlendMode::ALPHA.raw(),
-            transform: Transform::IDENTITY.raw(),
-            texture: ptr::null(),
-            shader: ptr::null(),
-        },
-        _texture: PhantomData,
-        _shader: PhantomData,
-    };
-}
-
-impl Default for RenderStates<'static, 'static, 'static> {
+impl<'texture, 'shader, 'shader_texture> Default
+    for RenderStates<'texture, 'shader, 'shader_texture>
+{
     fn default() -> Self {
-        Self::DEFAULT
+        Self {
+            repr: ffi::sfRenderStates {
+                blendMode: BlendMode::default().raw(),
+                transform: Transform::default().raw(),
+                texture: ptr::null(),
+                shader: ptr::null(),
+            },
+            _texture: PhantomData,
+            _shader: PhantomData,
+        }
     }
 }
