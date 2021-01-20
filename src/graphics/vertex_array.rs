@@ -127,7 +127,7 @@ impl VertexArray {
             index < self.vertex_count(),
             "get_vertex(): tried to get an inexisting vertex!"
         );
-        unsafe { self.get_vertex_unchecked(index) }
+        unsafe { &*(sfVertexArray_getVertex(self.vertex_array, index) as *const _) }
     }
 
     /// Returns a mutable reference to the `index`-th vertex in the `VertexArray`.
@@ -138,7 +138,7 @@ impl VertexArray {
             index < self.vertex_count(),
             "get_vertex_mut(): tried to get an inexisting vertex!"
         );
-        unsafe { self.get_vertex_mut_unchecked(index) }
+        unsafe { &mut *(sfVertexArray_getVertex(self.vertex_array, index) as *mut _) }
     }
 
     /// Sets the `index`-th vertex to `vertex`.
