@@ -61,10 +61,7 @@ use std::slice;
 /// [`Sound`]: crate::audio::Sound
 #[derive(Debug)]
 #[allow(missing_copy_implementations)]
-#[repr(C)]
-pub struct SoundBuffer {
-    _opaque: [u8; 0],
-}
+pub enum SoundBuffer {}
 
 impl SoundBuffer {
     /// Save a sound buffer to an audio file
