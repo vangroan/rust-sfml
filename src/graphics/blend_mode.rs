@@ -119,7 +119,7 @@ pub enum Equation {
 impl BlendMode {
     /// Create a new `BlendMode`
     #[must_use]
-    pub const fn new(
+    pub fn new(
         col_src: Factor,
         col_dst: Factor,
         col_equ: Equation,
