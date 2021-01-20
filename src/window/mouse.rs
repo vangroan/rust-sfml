@@ -34,22 +34,20 @@ use csfml_window_sys as ffi;
 
 /// Mouse buttons.
 #[derive(Clone, PartialEq, Eq, PartialOrd, Ord, Debug, Copy)]
-#[repr(transparent)]
-pub struct Button(pub(super) ffi::sfMouseButton);
-
-impl Button {
+#[repr(u32)]
+pub enum Button {
     /// The left mouse button.
-    pub const LEFT: Self = Self(ffi::sfMouseButton_sfMouseLeft);
+    Left = 0,
     /// The right mouse button.
-    pub const RIGHT: Self = Self(ffi::sfMouseButton_sfMouseRight);
+    Right = 1,
     /// The middle (wheel) mouse button.
-    pub const MIDDLE: Self = Self(ffi::sfMouseButton_sfMouseMiddle);
+    Middle = 2,
     /// The first extra mouse button.
-    pub const X_BUTTON_1: Self = Self(ffi::sfMouseButton_sfMouseXButton1);
+    XButton1 = 3,
     /// The second extra mouse button.
-    pub const X_BUTTON_2: Self = Self(ffi::sfMouseButton_sfMouseXButton2);
+    XButton2 = 4,
     /// The total number of mouse buttons.
-    pub const COUNT: ffi::sfMouseButton = ffi::sfMouseButton_sfMouseButtonCount;
+    Count = 5,
 }
 
 #[derive(Clone, PartialEq, Eq, PartialOrd, Ord, Debug, Copy)]
@@ -81,7 +79,13 @@ impl Button {
     pub fn is_pressed(self) -> bool {
         thread_safety::set_window_thread();
 
-        unsafe { ffi::sfMouse_isButtonPressed(self.0) }.to_bool()
+        unsafe { ffi::sfMouse_isButtonPressed(self.raw()) }.to_bool()
+    }
+    fn raw(self) -> ffi::sfMouseButton {
+        self as ffi::sfMouseButton
+    }
+    pub(super) unsafe fn from_raw(raw: ffi::sfMouseButton) -> Self {
+        ::std::mem::transmute(raw)
     }
 }
 
