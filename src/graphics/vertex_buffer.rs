@@ -8,17 +8,24 @@ use crate::graphics::{
 /// set the usage to `Stream`.  If data is going to be set once and used
 /// for a long time without being modified, set the usage to `Static`.
 /// For everything else `Dynamic` should be a good compromise.
+#[repr(u32)]
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-#[repr(transparent)]
-pub struct VertexBufferUsage(pub(super) sfVertexBufferUsage);
+pub enum VertexBufferUsage {
+    /// Constantly changing data.
+    Stream = 0,
+    /// Occasionally changing data.
+    Dynamic = 1,
+    /// Rarely changing data.
+    Static = 2,
+}
 
 impl VertexBufferUsage {
-    /// Constantly changing data.
-    pub const STREAM: Self = Self(sfVertexBufferUsage_sfVertexBufferStream);
-    /// Occasionally changing data.
-    pub const DYNAMIC: Self = Self(sfVertexBufferUsage_sfVertexBufferDynamic);
-    /// Rarely changing data.
-    pub const STATIC: Self = Self(sfVertexBufferUsage_sfVertexBufferStatic);
+    pub(super) fn raw(self) -> sfVertexBufferUsage {
+        self as sfVertexBufferUsage
+    }
+    pub(super) unsafe fn from_raw(raw: sfVertexBufferUsage) -> Self {
+        ::std::mem::transmute(raw)
+    }
 }
 
 /// Define a set of one or more 2D primitives stored in graphics memory
@@ -40,7 +47,7 @@ impl VertexBuffer {
         usage: VertexBufferUsage,
     ) -> VertexBuffer {
         let vertex_buffer =
-            unsafe { sfVertexBuffer_create(vertex_count, primitive_type.0, usage.0) };
+            unsafe { sfVertexBuffer_create(vertex_count, primitive_type.0, usage.raw()) };
         VertexBuffer { vertex_buffer }
     }
 
@@ -148,7 +155,7 @@ impl VertexBuffer {
     /// Return Usage specifier
     #[must_use]
     pub fn usage(&self) -> VertexBufferUsage {
-        unsafe { VertexBufferUsage(sfVertexBuffer_getUsage(self.vertex_buffer)) }
+        unsafe { VertexBufferUsage::from_raw(sfVertexBuffer_getUsage(self.vertex_buffer)) }
     }
 
     /// Set the usage specifier of this vertex buffer.
@@ -164,7 +171,7 @@ impl VertexBuffer {
     /// # Arguments
     /// * usage - Usage specifier
     pub fn set_usage(&mut self, usage: VertexBufferUsage) {
-        unsafe { sfVertexBuffer_setUsage(self.vertex_buffer, usage.0) }
+        unsafe { sfVertexBuffer_setUsage(self.vertex_buffer, usage.raw()) }
     }
 
     /// Bind a vertex buffer for rendering.
@@ -176,8 +183,8 @@ impl VertexBuffer {
     #[cfg_attr(not(feature = "ci-headless"), doc = "```")]
     /// use sfml::graphics::{PrimitiveType, VertexBuffer, VertexBufferUsage};
     ///
-    /// let mut vb1 = VertexBuffer::new(PrimitiveType::TRIANGLES, 32, VertexBufferUsage::STATIC);
-    /// let mut vb2 = VertexBuffer::new(PrimitiveType::QUADS, 12, VertexBufferUsage::DYNAMIC);
+    /// let mut vb1 = VertexBuffer::new(PrimitiveType::TRIANGLES, 32, VertexBufferUsage::Static);
+    /// let mut vb2 = VertexBuffer::new(PrimitiveType::QUADS, 12, VertexBufferUsage::Dynamic);
     ///
     /// // ...
     ///
