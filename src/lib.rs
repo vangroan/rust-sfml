@@ -54,6 +54,8 @@ mod sf_bool_ext;
 pub mod audio;
 #[cfg(feature = "graphics")]
 pub mod graphics;
+#[cfg(feature = "network")]
+pub mod network;
 pub mod system;
 #[cfg(feature = "window")]
 pub mod window;
