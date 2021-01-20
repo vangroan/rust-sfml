@@ -1,7 +1,8 @@
 use crate::{
     sf_bool_ext::SfBoolExt,
     system::{SfStrConv, Vector2i, Vector2u},
-    window::{thread_safety, ContextSettings, Cursor, Event, Style, VideoMode},
+    thread_safety,
+    window::{ContextSettings, Cursor, Event, Style, VideoMode},
 };
 use csfml_system_sys::sfBool;
 use csfml_window_sys as ffi;
