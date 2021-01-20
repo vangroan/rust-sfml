@@ -152,9 +152,10 @@ impl<'texture> Shader<'texture> {
     /// for it before writing your own shaders.
     ///
     /// # Arguments
-    /// * `vertex` - Optional path to vertex shader
-    /// * `geometry` - Optional path to geometry shader
-    /// * `fragment` - Optional path to fragment shader
+    /// * vertexShaderFilename - Some(Path) of the vertex shader file to load,
+    ///                          or None to skip this shader
+    /// * fragmentShaderFilename - Some(Path) of the fragment shader file to load,
+    ///                            or None to skip this shader
     ///
     /// Return Some(Shader) or None
     #[must_use]
@@ -191,8 +192,10 @@ impl<'texture> Shader<'texture> {
     /// for it before writing your own shaders.
     ///
     /// # Arguments
-    /// * `vertex_shader_stream` - Optional vertex shader stream
-    /// * `fragment_shader_stream` - Optional fragment shader stream
+    /// * vertexShaderStream - Some(T: Read + Seek) of the vertex shader stream to load,
+    ///                        or None to skip this shader
+    /// * fragmentShaderStream - Some(T: Read + Seek) of the fragment shader stream to load,
+    ///                          or None to skip this shader
     ///
     /// Return Some(Shader) or None
     pub fn from_stream<T: Read + Seek>(
