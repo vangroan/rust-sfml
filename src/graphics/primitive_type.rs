@@ -1,4 +1,4 @@
-use crate::graphics::csfml_graphics_sys::sfPrimitiveType;
+use graphics::csfml_graphics_sys::sfPrimitiveType;
 
 /// Types of primitives that a [`VertexArray`] can render.
 ///

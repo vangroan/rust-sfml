@@ -1,5 +1,5 @@
-use crate::graphics::csfml_graphics_sys as ffi;
-use crate::graphics::{FloatRect, IntRect};
+use graphics::csfml_graphics_sys as ffi;
+use graphics::{FloatRect, IntRect};
 
 /// Structure describing a glyph.
 ///

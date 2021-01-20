@@ -1,4 +1,4 @@
-use crate::system::Time;
+use system::Time;
 
 /// Make the current thread sleep for a given duration.
 pub fn sleep(time: Time) {

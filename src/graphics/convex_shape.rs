@@ -1,13 +1,13 @@
-use crate::graphics::csfml_graphics_sys as ffi;
-use crate::graphics::{
+use csfml_system_sys::{sfBool, sfTrue};
+use graphics::csfml_graphics_sys as ffi;
+use graphics::{
     Color, Drawable, FloatRect, IntRect, RenderStates, RenderTarget, Shape, Texture, Transform,
     Transformable,
 };
-use crate::sf_bool_ext::SfBoolExt;
-use crate::system::Vector2f;
-use csfml_system_sys::{sfBool, sfTrue};
+use sf_bool_ext::SfBoolExt;
 use std::marker::PhantomData;
 use std::ptr;
+use system::Vector2f;
 
 /// Specialized shape representing a convex polygon
 ///
