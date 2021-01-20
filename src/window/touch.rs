@@ -26,10 +26,8 @@
 //! (i.e. touch number 0 may be released while touch number 1 is still down).
 //!
 //! # Usage example
-//! ```no_run
-//! use sfml::window::{Window, touch};
-//!
-//! # let window: Window = unimplemented!();
+//! ```ignore
+//! use sfml::window::touch;
 //!
 //! if touch::is_down(0) {
 //!     // touch 0 is down
