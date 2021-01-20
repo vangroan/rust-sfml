@@ -24,7 +24,7 @@ impl RenderTexture {
     /// * depthBuffer - Do you want a depth-buffer attached?
     ///                 (useful only if you're doing 3D OpenGL on the rendertexture)
     ///
-    /// Returns `None` if creation fails.
+    /// Return Some(RenderTexture) or None
     #[must_use]
     pub fn new(width: u32, height: u32, depth_buffer: bool) -> Option<RenderTexture> {
         let tex =

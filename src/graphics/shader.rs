@@ -159,7 +159,7 @@ impl<'texture> Shader<'texture> {
     /// * `geometry` - Optional path to geometry shader
     /// * `fragment` - Optional path to fragment shader
     ///
-    /// Returns `None` if loading failed.
+    /// Return Some(Shader) or None
     #[must_use]
     pub fn from_file(
         vertex: Option<&str>,
@@ -197,7 +197,7 @@ impl<'texture> Shader<'texture> {
     /// * `vertex_shader_stream` - Optional vertex shader stream
     /// * `fragment_shader_stream` - Optional fragment shader stream
     ///
-    /// Returns `None` if loading failed.
+    /// Return Some(Shader) or None
     pub fn from_stream<T: Read + Seek>(
         vertex_shader_stream: Option<&mut T>,
         geometry_shader_stream: Option<&mut T>,
@@ -241,7 +241,7 @@ impl<'texture> Shader<'texture> {
     /// * fragmentShader - Some(String) containing the source code of the fragment shader,
     ///                    or None to skip this shader
     ///
-    /// Returns `None` if loading failed.
+    /// Return Some(Shader) or None
     #[must_use]
     pub fn from_memory(
         vertex: Option<&str>,
