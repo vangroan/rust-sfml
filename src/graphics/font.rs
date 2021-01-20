@@ -101,7 +101,7 @@ impl Font {
         outline_thickness: f32,
     ) -> Glyph {
         unsafe {
-            Glyph(ffi::sfFont_getGlyph(
+            Glyph::from_raw(ffi::sfFont_getGlyph(
                 self.raw(),
                 codepoint,
                 character_size,
