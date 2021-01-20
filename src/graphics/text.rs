@@ -14,6 +14,7 @@ use std::marker::PhantomData;
 #[derive(Debug)]
 pub struct Text<'s> {
     text: *mut ffi::sfText,
+    string_length: usize,
     font: PhantomData<&'s Font>,
 }
 
@@ -223,6 +224,7 @@ impl<'s> Default for Text<'s> {
         assert!(!text.is_null(), "Failed to create Text");
         Self {
             text,
+            string_length: 0,
             font: PhantomData,
         }
     }
@@ -237,6 +239,7 @@ impl<'s> Clone for Text<'s> {
         } else {
             Text {
                 text: self.text,
+                string_length: self.string_length,
                 font: PhantomData,
             }
         }
