@@ -28,10 +28,10 @@ fn main() {
         text.outline_thickness()
     );
 
-    'mainloop: loop {
+    loop {
         while let Some(ev) = window.poll_event() {
             match ev {
-                Event::Closed => break 'mainloop,
+                Event::Closed => return,
                 Event::TextEntered { unicode } => {
                     if unicode == 0x08 as char {
                         string.pop();
@@ -50,5 +50,4 @@ fn main() {
         window.draw(&text);
         window.display();
     }
-    println!("The final text is {:?}", text.string().to_rust_string());
 }

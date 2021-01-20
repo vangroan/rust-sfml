@@ -4,7 +4,7 @@ use crate::graphics::{
     RenderStates, RenderTarget, Sprite, Text, Vertex, VertexArray, View,
 };
 use crate::sf_bool_ext::SfBoolExt;
-use crate::system::{SfString, Vector2f, Vector2i, Vector2u};
+use crate::system::{Vector2f, Vector2i, Vector2u};
 use crate::window::{ContextSettings, Event, Handle, Style, VideoMode};
 use csfml_system_sys::*;
 
@@ -39,17 +39,17 @@ impl RenderWindow {
     /// * title - Title of the render window
     /// * style - Window style
     /// * settings - Additional settings for the underlying OpenGL context
-    pub fn new<V: Into<VideoMode>, S: Into<SfString>>(
+    pub fn new<V: Into<VideoMode>>(
         mode: V,
-        title: S,
+        title: &str,
         style: Style,
         settings: &ContextSettings,
     ) -> RenderWindow {
-        let utf32 = title.into();
+        let utf32 = crate::unicode_conv::str_to_csfml(title);
         let sf_render_win: *mut ffi::sfRenderWindow = unsafe {
             ffi::sfRenderWindow_createUnicode(
                 mode.into().raw(),
-                utf32.as_ptr(),
+                utf32.as_ptr() as _,
                 style.bits(),
                 &settings.raw(),
             )
@@ -200,10 +200,10 @@ impl RenderWindow {
     /// # Arguments
     /// * title - New title
     ///
-    pub fn set_title<S: Into<SfString>>(&mut self, title: S) {
-        let utf32 = title.into();
+    pub fn set_title(&mut self, title: &str) {
+        let utf32 = crate::unicode_conv::str_to_csfml(title);
         unsafe {
-            ffi::sfRenderWindow_setUnicodeTitle(self.render_window, utf32.as_ptr());
+            ffi::sfRenderWindow_setUnicodeTitle(self.render_window, utf32.as_ptr() as _);
         }
     }
 
