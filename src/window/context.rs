@@ -17,8 +17,7 @@ use csfml_window_sys as ffi;
 /// Its destructor will take care of deactivating and freeing all the attached resources.
 ///
 /// # Usage example
-#[cfg_attr(feature = "ci-headless", doc = "```no_run")]
-#[cfg_attr(not(feature = "ci-headless"), doc = "```")]
+/// ```no_run
 /// # use sfml::window::Context;
 /// # use std::thread;
 /// thread::spawn(|| {

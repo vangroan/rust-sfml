@@ -23,8 +23,7 @@ use csfml_window_sys as ffi;
 ///
 /// # Usage example
 ///
-#[cfg_attr(feature = "ci-headless", doc = "```no_run")]
-#[cfg_attr(not(feature = "ci-headless"), doc = "```")]
+/// ```no_run
 /// use sfml::window::{VideoMode, Window, Style};
 ///
 /// // Display the list of all the video modes available for fullscreen
