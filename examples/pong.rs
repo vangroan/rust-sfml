@@ -3,10 +3,8 @@ extern crate sfml;
 
 use rand::{thread_rng, Rng};
 use sfml::audio::{Sound, SoundBuffer};
-use sfml::graphics::{
-    CircleShape, Color, Font, RectangleShape, RenderTarget, RenderWindow, Shape, Text,
-    Transformable,
-};
+use sfml::graphics::{CircleShape, Color, Font, RectangleShape, RenderTarget, RenderWindow, Shape,
+                     Text, Transformable};
 use sfml::system::{Clock, Time, Vector2f};
 use sfml::window::{ContextSettings, Event, Key, Style};
 use std::env;
