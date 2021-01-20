@@ -34,9 +34,7 @@
     clippy::must_use_candidate,
     clippy::doc_markdown,
     clippy::cast_possible_truncation,
-    clippy::mut_mut,
-    clippy::cast_possible_wrap,
-    clippy::cast_sign_loss
+    clippy::mut_mut
 )]
 
 #[cfg(feature = "window")]
