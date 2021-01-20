@@ -1,6 +1,5 @@
-use crate::graphics::{
-    csfml_graphics_sys::*, Drawable, PrimitiveType, RenderStates, RenderTarget, Vertex,
-};
+use crate::graphics::csfml_graphics_sys::*;
+use crate::graphics::{Drawable, PrimitiveType, RenderStates, RenderTarget, Vertex};
 
 /// Usage specifiers for a [`VertexBuffer`]
 ///

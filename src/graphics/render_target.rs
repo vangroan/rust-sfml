@@ -1,10 +1,8 @@
-use crate::{
-    graphics::{
-        CircleShape, Color, ConvexShape, CustomShape, Drawable, IntRect, PrimitiveType,
-        RectangleShape, RenderStates, Sprite, Text, Vertex, VertexArray, VertexBuffer, View,
-    },
-    system::{Vector2f, Vector2i, Vector2u},
+use crate::graphics::{
+    CircleShape, Color, ConvexShape, CustomShape, Drawable, IntRect, PrimitiveType, RectangleShape,
+    RenderStates, Sprite, Text, Vertex, VertexArray, VertexBuffer, View,
 };
+use crate::system::{Vector2f, Vector2i, Vector2u};
 
 /// Trait for all render targets (window, texture, ...)
 ///

@@ -1,13 +1,14 @@
-use crate::{
-    graphics::{
-        csfml_graphics_sys as ffi, Color, Drawable, FloatRect, IntRect, RenderStates, RenderTarget,
-        Shape, Texture, Transform, Transformable,
-    },
-    sf_bool_ext::SfBoolExt,
-    system::Vector2f,
+use crate::graphics::csfml_graphics_sys as ffi;
+use crate::graphics::{
+    Color, Drawable, FloatRect, IntRect, RenderStates, RenderTarget, Shape, Texture, Transform,
+    Transformable,
 };
+use crate::sf_bool_ext::SfBoolExt;
+use crate::system::Vector2f;
 use csfml_system_sys::{sfBool, sfTrue, sfVector2f};
-use std::{marker::PhantomData, os::raw::c_void, ptr};
+use std::marker::PhantomData;
+use std::os::raw::c_void;
+use std::ptr;
 
 /// The points of a custom shape.
 pub trait CustomShapePoints {

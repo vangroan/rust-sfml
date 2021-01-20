@@ -1,6 +1,7 @@
 extern crate sfml;
 
-use sfml::{graphics::*, window::*};
+use sfml::graphics::*;
+use sfml::window::*;
 
 fn main() {
     let mut window = RenderWindow::new(

@@ -1,10 +1,9 @@
 extern crate sfml;
 
-use sfml::{
-    audio::{Music, SoundStatus},
-    system::{sleep, Time},
-};
-use std::{fs::File, io::Write};
+use sfml::audio::{Music, SoundStatus};
+use sfml::system::{sleep, Time};
+use std::fs::File;
+use std::io::Write;
 
 fn main() {
     let mut file = File::open("resources/orchestral.ogg").unwrap();
