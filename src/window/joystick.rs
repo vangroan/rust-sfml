@@ -45,10 +45,10 @@
 //! }
 //! ```
 //!
-//! [`COUNT`]: COUNT
-//! [`BUTTON_COUNT`]: BUTTON_COUNT
-//! [`AXIS_COUNT`]: AXIS_COUNT
-//! [`update`]: update
+//! [`COUNT`]: joystick::COUNT
+//! [`BUTTON_COUNT`]: joystick::BUTTON_COUNT
+//! [`AXIS_COUNT`]: joystick::AXIS_COUNT
+//! [`update`]: joystick::update
 //!
 
 use crate::sf_bool_ext::SfBoolExt;
