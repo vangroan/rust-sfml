@@ -8,6 +8,7 @@ use csfml_system_sys::sfBool;
 use std::{
     ffi::CString,
     io::{Read, Seek},
+    mem,
 };
 
 /// Streamed music played from an audio file.
@@ -209,7 +210,7 @@ impl Music {
     /// Return current status
     #[must_use]
     pub fn status(&self) -> SoundStatus {
-        unsafe { SoundStatus(ffi::sfMusic_getStatus(self.music)) }
+        unsafe { mem::transmute(ffi::sfMusic_getStatus(self.music)) }
     }
 
     /// Get the current playing position of a music
