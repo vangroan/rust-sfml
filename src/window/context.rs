@@ -68,9 +68,8 @@ fn test_settings() {
     thread::spawn(move || {
         let context = Context::new();
         assert_eq!(context.settings(), win_settings);
-    })
-    .join()
-    .unwrap();
+    }).join()
+        .unwrap();
 }
 
 impl Drop for Context {
