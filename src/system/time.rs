@@ -68,10 +68,8 @@ impl Time {
 
     /// Constructs a time value from a number of milliseconds.
     #[must_use]
-    pub const fn milliseconds(milliseconds: i32) -> Self {
-        Time(sfTime {
-            microseconds: milliseconds as i64 * 1000,
-        })
+    pub fn milliseconds(milliseconds: i32) -> Self {
+        Time(unsafe { sfMilliseconds(milliseconds) })
     }
 
     /// Constructs a time value from a number of microseconds.
