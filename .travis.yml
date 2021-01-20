@@ -24,7 +24,7 @@ script:
   - mkdir .cargo
   - mv .travis.cargo.config .cargo/config
   - cargo build --verbose
-  - cargo test --features ci-headless --verbose
+  - cargo test --verbose -- --skip font --skip audio --skip window --skip graphics
   - cargo doc --verbose
 addons:
   apt:
