@@ -1,9 +1,4 @@
-use crate::{
-    graphics::FloatRect,
-    sf_box::{Dispose, RawDefault},
-    system::Vector2f,
-    SfBox,
-};
+use crate::{graphics::FloatRect, system::Vector2f, Dispose, RawDefault, SfBox};
 use csfml_graphics_sys as ffi;
 use std::borrow::ToOwned;
 

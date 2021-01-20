@@ -1,6 +1,4 @@
-use crate::{
-    inputstream::InputStream, sf_bool_ext::SfBoolExt, sf_box::Dispose, system::Time, SfBox,
-};
+use crate::{inputstream::InputStream, sf_bool_ext::SfBoolExt, system::Time, Dispose, SfBox};
 use csfml_audio_sys as ffi;
 use std::{
     borrow::ToOwned,
