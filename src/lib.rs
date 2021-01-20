@@ -3,17 +3,12 @@
 //! Prerequisites
 //! =============
 //!
-//! - Rust 1.31
+//! SFML 2.4 and CSFML 2.4 must be installed on your computer. You can download them here:
 //!
-//! - SFML 2.5 and CSFML 2.5 must be installed on your computer. You can download them here:
+//! - SFML 2.4: <http://www.sfml-dev.org/download.php>
+//! - CSFML 2.4: <http://www.sfml-dev.org/download/csfml/>
 //!
-//!     - SFML 2.5: <http://www.sfml-dev.org/download.php>
-//!     - CSFML 2.5: <http://www.sfml-dev.org/download/csfml/>
-//!
-//! - Supported platforms:
-//!     - Linux
-//!     - Windows
-//!     - Mac OS X
+//! The supported platforms are Linux, Windows and OS X.
 //!
 //! # License
 //!
