@@ -80,7 +80,7 @@ impl Button {
         unsafe { ffi::sfMouse_isButtonPressed(self.raw()) }.to_bool()
     }
     fn raw(self) -> ffi::sfMouseButton {
-        self as ffi::sfMouseButton
+        unsafe { ::std::mem::transmute(self) }
     }
     pub(super) unsafe fn from_raw(raw: ffi::sfMouseButton) -> Self {
         ::std::mem::transmute(raw)

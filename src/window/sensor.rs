@@ -97,6 +97,6 @@ impl Type {
         ::std::mem::transmute(raw)
     }
     fn raw(self) -> sfSensorType {
-        self as sfSensorType
+        unsafe { ::std::mem::transmute(self) }
     }
 }
