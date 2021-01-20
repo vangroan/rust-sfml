@@ -45,9 +45,8 @@ unsafe extern "C" fn get_point_count_callback(obj: *mut c_void) -> usize {
 
 #[allow(clippy::cast_ptr_alignment)]
 unsafe extern "C" fn get_point_callback(point: usize, obj: *mut c_void) -> sfVector2f {
-    use std::convert::TryInto;
     let shape = obj as *mut Box<dyn CustomShapePoints + Send>;
-    let ret = (*shape).point(point.try_into().unwrap());
+    let ret = (*shape).point(point as u32);
     ret.raw()
 }
 
@@ -148,8 +147,7 @@ impl<'s> Shape<'s> for CustomShape<'s> {
         unsafe { ffi::sfShape_getOutlineThickness(self.shape) }
     }
     fn point_count(&self) -> u32 {
-        use std::convert::TryInto;
-        unsafe { ffi::sfShape_getPointCount(self.shape).try_into().unwrap() }
+        unsafe { ffi::sfShape_getPointCount(self.shape) as u32 }
     }
     fn point(&self, index: u32) -> Vector2f {
         unsafe { Vector2f::from_raw(ffi::sfShape_getPoint(self.shape, index as usize)) }

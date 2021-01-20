@@ -83,12 +83,11 @@ impl VertexBuffer {
     ///
     /// Return True if the update was successful
     pub fn update(&mut self, vertices: &[Vertex], offset: u32) -> bool {
-        use std::convert::TryInto;
         unsafe {
             sfVertexBuffer_update(
                 self.vertex_buffer,
                 vertices.as_ptr() as *const _,
-                vertices.len().try_into().unwrap(),
+                vertices.len() as u32,
                 offset,
             ) != 0
         }

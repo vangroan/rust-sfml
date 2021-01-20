@@ -144,12 +144,8 @@ impl<'a> Iterator for Vertices<'a> {
     type Item = &'a Vertex;
 
     fn next(&mut self) -> Option<&'a Vertex> {
-        use std::convert::TryInto;
-        let point_count = unsafe {
-            sfVertexArray_getVertexCount(self.vertex_array.vertex_array)
-                .try_into()
-                .unwrap()
-        };
+        let point_count =
+            unsafe { sfVertexArray_getVertexCount(self.vertex_array.vertex_array) as u32 };
         if self.pos == point_count {
             None
         } else {
