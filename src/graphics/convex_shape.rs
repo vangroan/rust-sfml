@@ -34,7 +34,6 @@ impl<'s> ConvexShape<'s> {
     ///
     /// # Arguments
     /// * points_count - The number of point for the convex shape
-    #[must_use]
     pub fn new(points_count: u32) -> ConvexShape<'s> {
         let shape = unsafe { ffi::sfConvexShape_create() };
         assert!(!shape.is_null(), "Failed to create ConvexShape");
@@ -51,7 +50,6 @@ impl<'s> ConvexShape<'s> {
     /// # Arguments
     /// * texture - The texture to apply to the convex shape
     /// * points_count - The number of point for the convex shape
-    #[must_use]
     pub fn with_texture(points_count: u32, texture: &'s Texture) -> ConvexShape<'s> {
         let mut shape = ConvexShape::new(points_count);
         shape.set_texture(texture, true);
@@ -91,7 +89,6 @@ impl<'s> ConvexShape<'s> {
     }
 
     /// Return an immutable iterator over all the points of the `ConvexShape`
-    #[must_use]
     pub fn points(&self) -> ConvexShapePoints {
         ConvexShapePoints {
             convex_shape: self.convex_shape,

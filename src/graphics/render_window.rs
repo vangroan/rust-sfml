@@ -76,7 +76,6 @@ impl RenderWindow {
     /// * handle - The handle to the platform-specific window handle to use for
     ///            the window.
     /// * settings - Additional settings for the underlying OpenGL context
-    #[must_use]
     pub unsafe fn from_handle(handle: Handle, settings: &ContextSettings) -> RenderWindow {
         let sf_render_win: *mut ffi::sfRenderWindow =
             ffi::sfRenderWindow_createFromHandle(handle, &settings.raw());
@@ -160,7 +159,6 @@ impl RenderWindow {
     /// Note that a hidden window (set_visible(false)) will return
     /// true.
     ///
-    #[must_use]
     pub fn is_open(&self) -> bool {
         unsafe { ffi::sfRenderWindow_isOpen(self.render_window) }.to_bool()
     }
@@ -197,7 +195,6 @@ impl RenderWindow {
     ///
     /// Return a structure containing the OpenGL context settings
     ///
-    #[must_use]
     pub fn settings(&self) -> ContextSettings {
         unsafe { ContextSettings::from_raw(ffi::sfRenderWindow_getSettings(self.render_window)) }
     }
@@ -321,7 +318,6 @@ impl RenderWindow {
     ///
     /// Return the position in pixels
     ///
-    #[must_use]
     pub fn position(&self) -> Vector2i {
         unsafe { Vector2i::from_raw(ffi::sfRenderWindow_getPosition(self.render_window)) }
     }
@@ -349,7 +345,6 @@ impl RenderWindow {
     }
 
     /// Returns the current position of the mouse relative to the window.
-    #[must_use]
     pub fn mouse_position(&self) -> Vector2i {
         unsafe { Vector2i::from_raw(ffi::sfMouse_getPositionRenderWindow(self.render_window)) }
     }
@@ -367,7 +362,6 @@ impl RenderWindow {
     }
 
     /// Returns the current position of a touch in window coordinates.
-    #[must_use]
     pub fn touch_position(&self, finger: u32) -> Vector2i {
         unsafe {
             Vector2i::from_raw(ffi::sfTouch_getPositionRenderWindow(
@@ -381,7 +375,6 @@ impl RenderWindow {
     ///
     /// At any given time, only one window may have the input focus to receive input events
     /// such as keystrokes or most mouse events.
-    #[must_use]
     pub fn has_focus(&self) -> bool {
         unsafe { ffi::sfRenderWindow_hasFocus(self.render_window).to_bool() }
     }

@@ -69,7 +69,6 @@ impl<'texture, 'shader, 'shader_texture> RenderStates<'texture, 'shader, 'shader
     /// * shader - Some(shader) if there is a shader, None otherwise
     ///
     /// Return a new default RenderStates
-    #[must_use]
     pub fn new(
         blend_mode: BlendMode,
         transform: Transform,

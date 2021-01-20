@@ -55,7 +55,6 @@ impl<'s> CustomShape<'s> {
     ///
     /// # Arguments
     /// * points - Implementation of [`CustomShapePoints`]
-    #[must_use]
     pub fn new(points: Box<dyn CustomShapePoints + Send>) -> CustomShape<'s> {
         let raw_impl = Box::into_raw(Box::new(points));
         let sp = unsafe {
@@ -78,7 +77,6 @@ impl<'s> CustomShape<'s> {
     /// # Arguments
     /// * points - Implementation of [`CustomShapePoints`] trait
     /// * texture - The texture to bind to the `CustomShape`
-    #[must_use]
     pub fn with_texture(
         points: Box<dyn CustomShapePoints + Send>,
         texture: &'s Texture,

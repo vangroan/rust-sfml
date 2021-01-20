@@ -15,7 +15,6 @@ impl SfStr {
     /// Convert to a UTF-8 `String` from the Rust standard library.
     ///
     /// Panics if the string is not valid UTF-32.
-    #[must_use]
     pub fn to_rust_string(&self) -> String {
         self.0.to_string().unwrap()
     }

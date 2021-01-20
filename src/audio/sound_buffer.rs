@@ -77,7 +77,6 @@ impl SoundBuffer {
     /// * filename - Path of the sound file to write
     ///
     /// Return true if saving succeeded, false if it faileds
-    #[must_use]
     pub fn save_to_file(&self, filename: &str) -> bool {
         let c_str = CString::new(filename.as_bytes()).unwrap();
         unsafe { ffi::sfSoundBuffer_saveToFile(self.raw(), c_str.as_ptr()) }.to_bool()
@@ -88,7 +87,6 @@ impl SoundBuffer {
     /// The array of samples can be accessed with [`samples`](SoundBuffer::samples).
     ///
     /// Return the number of samples
-    #[must_use]
     pub fn sample_count(&self) -> u64 {
         unsafe { ffi::sfSoundBuffer_getSampleCount(self.raw()) }
     }
@@ -96,7 +94,6 @@ impl SoundBuffer {
     /// Get the samples stored in the buffer
     ///
     /// Panic if the sample count exceeds usize range
-    #[must_use]
     pub fn samples(&self) -> &[i16] {
         let len = self.sample_count();
         // TODO: Replace with TryFrom, or a similar standard library API, once available
@@ -115,7 +112,6 @@ impl SoundBuffer {
     /// be 1, 2 for stereo, etc.
     ///
     /// Return the number of channels
-    #[must_use]
     pub fn channel_count(&self) -> u32 {
         unsafe { ffi::sfSoundBuffer_getChannelCount(self.raw()) }
     }
@@ -123,7 +119,6 @@ impl SoundBuffer {
     /// Get the total duration of a sound buffer
     ///
     /// Return the sound duration
-    #[must_use]
     pub fn duration(&self) -> Time {
         unsafe { Time::from_raw(ffi::sfSoundBuffer_getDuration(self.raw())) }
     }
@@ -135,7 +130,6 @@ impl SoundBuffer {
     /// samples/s is CD quality).
     ///
     /// Return the sample rate (number of samples per second)
-    #[must_use]
     pub fn sample_rate(&self) -> u32 {
         unsafe { ffi::sfSoundBuffer_getSampleRate(self.raw()) }
     }
@@ -153,7 +147,6 @@ impl SoundBuffer {
     /// * filename - Path of the sound file to load
     ///
     /// Returns `None` on failure.
-    #[must_use]
     pub fn from_file(filename: &str) -> Option<SfBox<Self>> {
         let c_str = CString::new(filename.as_bytes()).unwrap();
         let sound_buffer: *mut ffi::sfSoundBuffer =
@@ -161,7 +154,6 @@ impl SoundBuffer {
         SfBox::new(sound_buffer as *mut Self)
     }
     /// Load the sound buffer from a file in memory.
-    #[must_use]
     pub fn from_memory(data: &[u8]) -> Option<SfBox<Self>> {
         let sound_buffer =
             unsafe { ffi::sfSoundBuffer_createFromMemory(data.as_ptr() as _, data.len()) };
@@ -176,7 +168,6 @@ impl SoundBuffer {
     /// Load the sound buffer from a slice of audio samples.
     ///
     /// The assumed format of the audio samples is 16 bits signed integer.
-    #[must_use]
     pub fn from_samples(
         samples: &[i16],
         channel_count: u32,

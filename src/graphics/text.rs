@@ -47,7 +47,6 @@ impl<'s> Text<'s> {
     }
 
     /// Get the string of a text
-    #[must_use]
     pub fn string(&self) -> &SfStr {
         unsafe {
             let utf32: *const u32 = ffi::sfText_getUnicodeString(self.text);
@@ -58,7 +57,6 @@ impl<'s> Text<'s> {
     /// Get the size of the characters
     ///
     /// Return the size of the characters
-    #[must_use]
     pub fn character_size(&self) -> u32 {
         unsafe { ffi::sfText_getCharacterSize(self.text) }
     }
@@ -102,7 +100,6 @@ impl<'s> Text<'s> {
     /// Get the style of a text
     ///
     /// Return the current string style (see Style enum)
-    #[must_use]
     pub fn style(&self) -> TextStyle {
         unsafe { TextStyle::from_bits_truncate(ffi::sfText_getStyle(self.text)) }
     }
@@ -111,7 +108,6 @@ impl<'s> Text<'s> {
     /// If the text has no font attached, a None is returned.
     /// The returned pointer is const, which means that you can't
     /// modify the font when you retrieve it with this function.
-    #[must_use]
     pub fn font(&self) -> Option<&'s Font> {
         unsafe {
             let raw = ffi::sfText_getFont(self.text);
@@ -150,19 +146,16 @@ impl<'s> Text<'s> {
     }
 
     /// Returns the fill color of the text.
-    #[must_use]
     pub fn fill_color(&self) -> Color {
         unsafe { Color::from_raw(ffi::sfText_getFillColor(self.text)) }
     }
 
     /// Returns the outline color of the text.
-    #[must_use]
     pub fn outline_color(&self) -> Color {
         unsafe { Color::from_raw(ffi::sfText_getOutlineColor(self.text)) }
     }
 
     /// Returns the outline thickness of the text, in pixels.
-    #[must_use]
     pub fn outline_thickness(&self) -> f32 {
         unsafe { ffi::sfText_getOutlineThickness(self.text) }
     }
@@ -180,7 +173,6 @@ impl<'s> Text<'s> {
     /// * index - The index of the character
     ///
     /// Return the position of the character
-    #[must_use]
     pub fn find_character_pos(&self, index: usize) -> Vector2f {
         unsafe { Vector2f::from_raw(ffi::sfText_findCharacterPos(self.text, index)) }
     }
@@ -194,7 +186,6 @@ impl<'s> Text<'s> {
     /// entity in the entity's coordinate system.
     ///
     /// Return the local bounding rectangle of the entity
-    #[must_use]
     pub fn local_bounds(&self) -> FloatRect {
         unsafe { FloatRect::from_raw(ffi::sfText_getLocalBounds(self.text)) }
     }
@@ -208,7 +199,6 @@ impl<'s> Text<'s> {
     /// text in the global 2D world's coordinate system.
     ///
     /// Return the global bounding rectangle of the entity
-    #[must_use]
     pub fn global_bounds(&self) -> FloatRect {
         unsafe { FloatRect::from_raw(ffi::sfText_getGlobalBounds(self.text)) }
     }
