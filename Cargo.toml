@@ -53,6 +53,7 @@ rand = "0.3"
 
 [lib]
 name = "sfml"
+crate-type = ["dylib", "rlib"]
 
 [[example]]
 name = "borrowed-resources"
