@@ -1,4 +1,4 @@
-use crate::graphics::csfml_graphics_sys as ffi;
+use crate::graphics::csfml_graphics_sys::sfPrimitiveType;
 
 /// Types of primitives that a [`VertexArray`] can render.
 ///
@@ -7,24 +7,31 @@ use crate::graphics::csfml_graphics_sys as ffi;
 ///
 /// [`VertexArray`]: crate::graphics::VertexArray
 ///
-#[repr(transparent)]
+#[repr(u32)]
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub struct PrimitiveType(pub(super) ffi::sfPrimitiveType);
-
-impl PrimitiveType {
+pub enum PrimitiveType {
     /// List of individual points.
-    pub const POINTS: Self = Self(ffi::sfPrimitiveType_sfPoints);
+    Points = 0,
     /// List of individual lines.
-    pub const LINES: Self = Self(ffi::sfPrimitiveType_sfLines);
+    Lines = 1,
     /// List of connected lines, a point uses the previous point to form a line.
-    pub const LINE_STRIP: Self = Self(ffi::sfPrimitiveType_sfLineStrip);
+    LineStrip = 2,
     /// List of individual triangles.
-    pub const TRIANGLES: Self = Self(ffi::sfPrimitiveType_sfTriangles);
+    Triangles = 3,
     /// List of connected triangles, a point uses the two previous points to form a triangle.
-    pub const TRIANGLE_STRIP: Self = Self(ffi::sfPrimitiveType_sfTriangleStrip);
+    TriangleStrip = 4,
     /// List of connected triangles, a point uses the common center
     /// and the previous point to form a triangle.
-    pub const TRIANGLE_FAN: Self = Self(ffi::sfPrimitiveType_sfTriangleFan);
+    TriangleFan = 5,
     /// List of individual quads (deprecated, don't work with OpenGL ES)
-    pub const QUADS: Self = Self(ffi::sfPrimitiveType_sfQuads);
+    Quads = 6,
+}
+
+impl PrimitiveType {
+    pub(super) fn raw(self) -> sfPrimitiveType {
+        self as sfPrimitiveType
+    }
+    pub(super) unsafe fn from_raw(raw: sfPrimitiveType) -> Self {
+        ::std::mem::transmute(raw)
+    }
 }
