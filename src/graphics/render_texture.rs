@@ -159,10 +159,10 @@ impl RenderTarget for RenderTexture {
             ))
         }
     }
-    fn draw(&mut self, object: &dyn Drawable) {
+    fn draw(&mut self, object: &Drawable) {
         object.draw(self, RenderStates::default());
     }
-    fn draw_with_renderstates(&mut self, object: &dyn Drawable, render_states: RenderStates) {
+    fn draw_with_renderstates(&mut self, object: &Drawable, render_states: RenderStates) {
         object.draw(self, render_states);
     }
     fn draw_text(&self, text: &Text, rs: RenderStates) {
