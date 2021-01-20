@@ -3,7 +3,6 @@
 pub use self::{
     context::Context,
     context_settings::ContextSettings,
-    cursor::{Cursor, Type as CursorType},
     event::Event,
     keyboard::{set_virtual_keyboard_visible, Key},
     style::Style,
@@ -14,7 +13,6 @@ pub use self::{
 pub mod clipboard;
 mod context;
 mod context_settings;
-mod cursor;
 mod event;
 pub mod joystick;
 mod keyboard;
