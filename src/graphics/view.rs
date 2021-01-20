@@ -1,8 +1,7 @@
 use crate::{
-    graphics::FloatRect,
+    graphics::{csfml_graphics_sys as ffi, FloatRect},
     system::{Dispose, RawDefault, SfBox, Vector2f},
 };
-use csfml_graphics_sys as ffi;
 use std::borrow::ToOwned;
 
 /// 2D camera that defines what region is shown on screen

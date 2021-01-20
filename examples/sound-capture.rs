@@ -1,3 +1,5 @@
+extern crate sfml;
+
 use sfml::{
     audio::{capture, Sound, SoundBufferRecorder, SoundStatus},
     system::{sleep, Time},

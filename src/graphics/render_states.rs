@@ -1,5 +1,4 @@
-use crate::graphics::{BlendMode, Shader, Texture, Transform};
-use csfml_graphics_sys as ffi;
+use crate::graphics::{csfml_graphics_sys as ffi, BlendMode, Shader, Texture, Transform};
 use std::{marker::PhantomData, ptr};
 
 /// Define the states used for drawing to a [`RenderTarget`].

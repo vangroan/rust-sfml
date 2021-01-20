@@ -1,3 +1,5 @@
+extern crate sfml;
+
 use sfml::{
     graphics::{
         CircleShape, Color, Drawable, RectangleShape, RenderStates, RenderTarget, RenderWindow,

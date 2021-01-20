@@ -1,3 +1,5 @@
+extern crate sfml;
+
 use sfml::{
     audio::{SoundStatus, SoundStream, SoundStreamPlayer},
     system::Time,

@@ -1,10 +1,9 @@
 use crate::{
-    graphics::{Color, IntRect},
+    graphics::{csfml_graphics_sys as ffi, Color, IntRect},
     inputstream::InputStream,
     sf_bool_ext::SfBoolExt,
     system::Vector2u,
 };
-use csfml_graphics_sys as ffi;
 use csfml_system_sys::sfBool;
 use std::{
     ffi::CString,

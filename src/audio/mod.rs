@@ -1,6 +1,8 @@
 //! Sounds, streaming (musics or custom sources), recording, spatialization
 //!
 
+extern crate csfml_audio_sys;
+
 #[doc(inline)]
 pub use self::capture::{SoundBufferRecorder, SoundRecorder, SoundRecorderDriver};
 pub use self::{

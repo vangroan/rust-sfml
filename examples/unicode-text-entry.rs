@@ -1,3 +1,5 @@
+extern crate sfml;
+
 use sfml::{graphics::*, window::*};
 
 fn main() {

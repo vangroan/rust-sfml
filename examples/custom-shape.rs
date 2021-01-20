@@ -1,3 +1,5 @@
+extern crate sfml;
+
 use sfml::{
     graphics::{Color, CustomShape, CustomShapePoints, RenderTarget, RenderWindow, Shape},
     system::Vector2f,

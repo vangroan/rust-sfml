@@ -1,9 +1,8 @@
 use crate::{
-    audio::{SoundBuffer, SoundSource, SoundStatus},
+    audio::{csfml_audio_sys as ffi, SoundBuffer, SoundSource, SoundStatus},
     sf_bool_ext::SfBoolExt,
     system::{Time, Vector3f},
 };
-use csfml_audio_sys as ffi;
 use csfml_system_sys::sfBool;
 use std::marker::PhantomData;
 

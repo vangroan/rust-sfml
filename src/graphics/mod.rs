@@ -1,5 +1,7 @@
 //! 2D graphics module: sprites, text, shapes..
 
+extern crate csfml_graphics_sys;
+
 #[doc(inline)]
 pub use self::blend_mode::BlendMode;
 pub use self::{
