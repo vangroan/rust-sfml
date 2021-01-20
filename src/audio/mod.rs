@@ -10,7 +10,6 @@ pub use self::sound_buffer::SoundBuffer;
 pub use self::sound_source::SoundSource;
 pub use self::sound_status::SoundStatus;
 pub use self::sound_stream::{SoundStream, SoundStreamPlayer};
-pub use self::time_span::TimeSpan;
 
 /// Types and helper functions dealing with audio capture.
 pub mod capture;
@@ -21,4 +20,3 @@ mod sound_buffer;
 mod sound_source;
 mod sound_status;
 mod sound_stream;
-mod time_span;
